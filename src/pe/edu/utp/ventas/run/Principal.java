@@ -10,7 +10,7 @@ import pe.edu.utp.ventas.vista.ProductoForm;
  *
  * @author MRoblesDev
  */
-public class CRUDMVC {
+public class Principal {
 
     /**
      * @param args the command line arguments
