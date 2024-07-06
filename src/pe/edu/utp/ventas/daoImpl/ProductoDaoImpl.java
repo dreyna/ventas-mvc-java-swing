@@ -15,7 +15,6 @@ import pe.edu.utp.ventas.entity.Producto;
  * @author Docente
  */
 public class ProductoDaoImpl extends Conexion implements ProductoDAO {
-    private PreparedStatement ps = null;
     @Override
     public boolean createProducto(Producto p) {
         PreparedStatement ps = null;
@@ -36,7 +35,9 @@ public class ProductoDaoImpl extends Conexion implements ProductoDAO {
             return false;
         } finally {
             try {
-                ps.close();
+                if(ps!=null){
+                    ps.close();
+                }                
             } catch (SQLException e) {
                 System.err.println(e);
             }

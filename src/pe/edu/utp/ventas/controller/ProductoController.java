@@ -11,7 +11,8 @@ import pe.edu.utp.ventas.vista.ProductoForm;
  *
  * @author Docente
  */
-public class ProductoController implements ActionListener{
+public class ProductoController implements ActionListener {
+
     private final Producto modelo;
     private final ProductoDAO pdao;
     private final ProductoForm vista;
@@ -20,6 +21,9 @@ public class ProductoController implements ActionListener{
         this.modelo = modelo;
         this.pdao = pdao;
         this.vista = vista;
+        initialize();
+    }
+    private void initialize() {
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
@@ -107,6 +111,5 @@ public class ProductoController implements ActionListener{
         vista.txtPrecio.setText(null);
         vista.txtCantidad.setText(null);
     }
-    
-    
+
 }
