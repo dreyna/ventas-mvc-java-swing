@@ -8,7 +8,7 @@ import pe.edu.utp.ventas.vista.ProductoForm;
 
 /**
  *
- * @author MRoblesDev
+ * @author Docente
  */
 public class Principal {
 

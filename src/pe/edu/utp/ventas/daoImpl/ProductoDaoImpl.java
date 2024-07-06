@@ -16,8 +16,6 @@ import pe.edu.utp.ventas.entity.Producto;
  */
 public class ProductoDaoImpl extends Conexion implements ProductoDAO {
     private PreparedStatement ps = null;
-    private Connection con = getConexion();
-
     @Override
     public boolean createProducto(Producto p) {
         PreparedStatement ps = null;
