@@ -23,6 +23,7 @@ public class Principal {
 
         ProductoController ctrl = new ProductoController(mod, modC, frm);
         ctrl.iniciar();
+        frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }
 }

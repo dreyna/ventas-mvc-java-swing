@@ -1,4 +1,3 @@
-
 package pe.edu.utp.ventas.daoImpl;
 
 import java.util.List;
@@ -7,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import pe.edu.utp.ventas.dao.ProductoDAO;
 import pe.edu.utp.ventas.entity.Producto;
 
@@ -15,6 +15,7 @@ import pe.edu.utp.ventas.entity.Producto;
  * @author Docente
  */
 public class ProductoDaoImpl extends Conexion implements ProductoDAO {
+
     @Override
     public boolean createProducto(Producto p) {
         PreparedStatement ps = null;
@@ -35,9 +36,9 @@ public class ProductoDaoImpl extends Conexion implements ProductoDAO {
             return false;
         } finally {
             try {
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
-                }                
+                }
             } catch (SQLException e) {
                 System.err.println(e);
             }
@@ -137,8 +138,33 @@ public class ProductoDaoImpl extends Conexion implements ProductoDAO {
 
     @Override
     public List<Producto> readAllProducto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM producto";
+        List<Producto> lista = new ArrayList<>();
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.setId(rs.getInt("id"));
+                p.setCodigo(rs.getString("codigo"));
+                p.setNombre(rs.getString("nombre"));
+                p.setPrecio(rs.getDouble("precio"));
+                p.setCantidad(rs.getInt("cantidad"));
+                lista.add(p);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+        return lista;
     }
-   
-    
+
 }
